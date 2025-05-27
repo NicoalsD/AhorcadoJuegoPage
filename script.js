@@ -365,6 +365,79 @@ function handleErrors() {
 // ===== INICIALIZACIÓN COMPLETA =====
 // ===== INICIALIZACIÓN COMPLETA =====
 document.addEventListener('DOMContentLoaded', function() {
+    // Seleccionar todas las imágenes expandibles
+    const expandableImages = document.querySelectorAll('.demo-screenshot');
+    let overlay = null;
+    let expandedImage = null;
+    
+    // Función para crear el overlay
+    function createImageModal() {
+        overlay = document.createElement('div');
+        overlay.className = 'image-overlay';
+        document.body.appendChild(overlay);
+        
+        // Event listener para cerrar al hacer click en el overlay (pero no en la imagen)
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeImage();
+            }
+        });
+        
+        return overlay;
+    }
+    
+    // Función para abrir la imagen
+    function openImage(originalImage) {
+        // Crear overlay si no existe
+        if (!overlay) {
+            createImageModal();
+        }
+        
+        // Limpiar contenido anterior del overlay
+        overlay.innerHTML = '';
+        
+        // Crear nueva imagen expandida (clon de la original)
+        expandedImage = originalImage.cloneNode(true);
+        expandedImage.className = 'expanded-image';
+        
+        // Agregar imagen al overlay
+        overlay.appendChild(expandedImage);
+        
+        // Event listener para cerrar al hacer click en la imagen expandida
+        expandedImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeImage();
+        });
+        
+        // Mostrar overlay
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Función para cerrar la imagen
+    function closeImage() {
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Agregar event listeners a todas las imágenes expandibles
+    expandableImages.forEach(function(image) {
+        image.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openImage(this);
+        });
+    });
+    
+    // Event listener para cerrar con Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay && overlay.classList.contains('active')) {
+            closeImage();
+        }
+    });
+    
     try {
         initializeNavigation();
         initializeScrollEffects();
