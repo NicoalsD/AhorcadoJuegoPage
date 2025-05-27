@@ -67,10 +67,12 @@
                             <span></span>
                             <span></span>
                         </div>
-                        <span>ahorcado.py</span>
+                        <span>jueguito.py</span>
                     </div>
                     <div class="code-content">
                         <pre><code>import os
+
+nota = input()
 
 if nota == 5:
     print("Profe, lo queremos")
@@ -134,7 +136,7 @@ else:
         <div class="container">
             <div class="section-header">
                 <h2>Contexto del Proyecto</h2>
-                <p>Desarrollo de un juego clásico utilizando programación orientada a objetos</p>
+                <p>Desarrollo del juego del ahorcado clasico en Python</p>
             </div>
             
             <div class="context-content">
@@ -143,7 +145,7 @@ else:
                         <i class="fas fa-trophy"></i>
                     </div>
                     <h3>Objetivo</h3>
-                    <p>Desarrollar un juego del ahorcado interactivo que demuestre los principios de la Programación Orientada a Objetos, implementando encapsulación, herencia y polimorfismo en Python.</p>
+                    <p>Desarrollar un juego del ahorcado interactivo que demuestre el apprendizaje de conceptos vistos en el semestre.</p>
                 </div>
                 
                 <div class="context-card">
@@ -151,7 +153,7 @@ else:
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <h3>Justificación</h3>
-                    <p>El juego del ahorcado es ideal para aplicar conceptos de POO, permitiendo la creación de clases bien definidas, manejo de estados y encapsulación de la lógica del juego.</p>
+                    <p>El juego del ahorcado es ideal para aplicar conceptos como clases, atributos, listas, bucles y condicionales.</p>
                 </div>
                 
                 <div class="context-card">
@@ -159,7 +161,7 @@ else:
                         <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Tecnología</h3>
-                    <p>Implementación en Python utilizando programación orientada a objetos, con interfaz de consola y manejo de archivos para el diccionario de palabras.</p>
+                    <p>Implementación en Python utilizando programación orientada a objetos, con interfaz en la terminal y otra hecha con Pyside6.</p>
                 </div>
             </div>
         </div>
@@ -219,7 +221,7 @@ else:
         <div class="container">
             <div class="section-header">
                 <h2>Diagrama de Clases</h2>
-                <p>Arquitectura del sistema orientado a objetos</p>
+                <p>Se muestre el mundo o contexto del programa.</p>
             </div>
             
             <div class="diagram-container">
@@ -300,12 +302,11 @@ else:
                         <p>Clase principal que controla la lógica del juego. Maneja el estado de la partida, las letras adivinadas, los intentos restantes y coordina las interacciones entre las demás clases.</p>
                         
                         <div class="class-attributes">
-                            <h5>Atributos principales:</h5>
+                            <h5>Metodos principales:</h5>
                             <ul>
-                                <li><code>palabra_secreta</code>: Palabra a adivinar</li>
-                                <li><code>letras_adivinadas</code>: Lista de letras ya intentadas</li>
-                                <li><code>intentos_restantes</code>: Contador de intentos fallidos</li>
-                                <li><code>estado_juego</code>: Estado actual (jugando, ganado, perdido)</li>
+                                <li><code>iniciar_juego(self)</code>: Prepara una nueva partida</li>
+                                <li><code>jugar_letra(self, letra: Letra) -> bool</code>: Procesa la letra ingresada por el jugador, verifica si está en la palabra, actualiza los intentos restantes y el estado del juego</li>
+                                <li><code>dar_estado(self) -> Estado</code>: Devuelve el estado actual del juego (por ejemplo, NO_INICIADO, JUGANDO, GANADOR, AHORCADO).</li>
                             </ul>
                         </div>
                     </div>
@@ -462,21 +463,17 @@ class JuegoAhorcado:
                     </div>
                     <div class="class-description">
                         <h4>Descripción</h4>
-                        <p>Clase encargada de manejar el diccionario de palabras del juego. Se encarga de cargar las palabras desde un archivo, seleccionar palabras aleatorias y gestionar diferentes categorías de dificultad.</p>
+                        <p>Clase encargada de representar una letra individual de una palabra.</p>
                         
                         <div class="class-attributes">
                             <h5>Atributos principales:</h5>
-                            <ul>
-                                <li><code>palabras</code>: Lista de palabras disponibles</li>
-                                <li><code>archivo_diccionario</code>: Ruta del archivo de palabras</li>
-                                <li><code>categoria_actual</code>: Categoría de dificultad seleccionada</li>
-                            </ul>
+                            <p>Esta clase tiene 3 métodos principales, los que se muestran a continuación.</p>
                         </div>
                     </div>
                     
                     <div class="code-section">
                         <div class="code-header">
-                            <span>DiccionarioPalabras.py</span>
+                            <span>Letra.py</span>
                             <button class="copy-btn">
                                 <i class="fas fa-copy"></i>
                             </button>
@@ -517,21 +514,20 @@ class JuegoAhorcado:
                     </div>
                     <div class="class-description">
                         <h4>Descripción</h4>
-                        <p>Clase responsable de manejar toda la interacción con el usuario a través de la consola. Se encarga de mostrar el estado del juego, dibujar el ahorcado, capturar las entradas del usuario y mostrar mensajes informativos.</p>
+                        <p>Clase responsable de representar una palabra completa dentro del juego del ahorcado.</p>
                         
                         <div class="class-attributes">
-                            <h5>Atributos principales:</h5>
+                            <h5>Metodos principales:</h5>
                             <ul>
-                                <li><code>dibujos_ahorcado</code>: Lista con los dibujos del ahorcado</li>
-                                <li><code>colores</code>: Códigos de colores para la consola</li>
-                                <li><code>simbolos</code>: Símbolos especiales para el display</li>
+                                <li><code>dar_ocurrencias(self, p_jugadas: List[Letra]) -> List[str]</code>: Este método determina si el jugador ha logrado adivinar la palabra por completo.</li>
+                                <li><code>dar_ocurrencias(self, p_jugadas: List[Letra]) -> List[str]</code>: Este método devuelve una lista de caracteres (strings) que muestra el progreso del jugador.</li>
                             </ul>
                         </div>
                     </div>
                     
                     <div class="code-section">
                         <div class="code-header">
-                            <span>InterfazConsola.py</span>
+                            <span>Palabra.py</span>
                             <button class="copy-btn" onclick="copyCode('code3')">
                                 <i class="fas fa-copy"></i>
                             </button>
@@ -695,29 +691,27 @@ class Palabra:
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Proyecto Final</h4>
-                    <p>Juego del Ahorcado desarrollado en Python utilizando Programación Orientada a Objetos.</p>
+                    <p>Juego del Ahorcado desarrollado en Python.</p>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Universidad</h4>
-                    <p>Universidad Tecnológica Nacional</p>
-                    <p>Facultad de Ingeniería en Sistemas</p>
+                    <p>Universidad Cooperativa: Campus Pasto</p>
+                    <p>Facultad de Ingeniería de Software</p>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Tecnologías</h4>
                     <ul>
-                        <li>Python 3.x</li>
-                        <li>Programación Orientada a Objetos</li>
-                        <li>Manejo de Archivos</li>
-                        <li>Interfaz de Consola</li>
+                        <li>Python</li>
+                        <li>PySide6</li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p>Email: proyecto@universidad.edu</p>
-                    <p>Año: 2024</p>
+                    <h4>Dedicatoria</h4>
+                    <p>Al profe Daniel</p>
+                    <p>2024</p>
                 </div>
             </div>
             
