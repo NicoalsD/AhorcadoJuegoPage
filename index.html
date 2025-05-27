@@ -191,25 +191,28 @@ else:
                             <td>
                                 <span class="req-name">R1: Iniciar nueva partida</span>
                             </td>
-                            <td>Inicia una nueva partida con una nueva palabra aleatoria a adivinar.</td>
+                            <td> Inicia una nueva partida: selecciona una palabra al azar, reinicia los intentos disponibles y las letras jugadas.</td>
                             <td>Ninguna</td>
-                            <td>La partida se inicia con el número de intentos 6 con el dibujo reseteado de forma exitosa.</td>
+                            <td>Estado del juego cambiado a "JUGANDO", palabra seleccionada, jugadas vacías, y 6 intentos disponibles.</td>
                         </tr>
                         <tr>
                             <td>
                                 <span class="req-name">R2: Elegir una letra</span>
                             </td>
-                            <td>Permite al usuario escoger una letra del alfabeto que puede o no estar en la palabra.</td>
-                            <td>Letra elegida</td>
-                            <td>La letra es elegida exitosamente</td>
+                            <td>El jugador escoge una letra. El sistema evalúa si ya fue usada y si pertenece a la palabra. Se actualiza el estado del juego en caso de ganar o perder.</td>
+                            <td>Objeto Letra con un carácter</td>
+                            <td> <ul>
+                                <li>True: si la letra está en la palabra.</li>
+                                <li>False: si no está o si ya fue usada.</li>
+                            </ul></td>
                         </tr>
                         <tr>
                             <td>
                                 <span class="req-name">R3: Visualizar resultado</span>
                             </td>
-                            <td>Visualiza el resultado que da al haber escogido una letra.</td>
-                            <td>Ninguna</td>
-                            <td>Si la letra elegida se encuentra en la palabra, se muestra sobre el guion correspondiente, en caso de que no se encuentre, se pierde 1 intento y se muestra gráficamente. Si la letra ya fue utilizada, se informa al jugador. </td>
+                            <td>Muestra el estado actual de la palabra, revelando las letras acertadas y ocultando las no adivinadas con guiones bajos.</td>
+                            <td>Lista de letras jugadas (List[Letra])</td>
+                            <td>Lista de caracteres (List[str]), donde las letras adivinadas se muestran y las faltantes aparecen como "_". </td>
                         </tr>
                     </tbody>
                 </table>
