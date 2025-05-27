@@ -226,6 +226,38 @@ else:
                 <div class="diagram-placeholder" style="background: none; border: none; min-height: auto; padding: 0;"> 
                     <div class="mermaid">
                     classDiagram
+                        class Letra {
+                            -string letra
+                            +dar_letra(): str
+                            +es_igual(otra_letra: Letra): bool
+                        }
+                    
+                        class Palabra {
+                            -List~Letra~ letras
+                            +esta_completa(p_jugadas: List~Letra~): bool
+                            +buscar_letra_en_lista(p_letra: Letra, lista_letras: List~Letra~): bool
+
+                            +esta_letra(p_letra: Letra): bool
+                            +dar_ocurrencias(p_jugadas: List~Letra~): List~str~
+                            +dar_letras(): List~Letra~
+                        }
+                    
+                        class JuegoAhorcado {
+                            -List~Palabra~ diccionario
+                            -Palabra palabra_actual
+                            -List~Letra~ jugadas
+                            -int intentos_disponibles
+                            -Estado estado
+                            +iniciar_juego(): void
+                            +jugar_letra(letra: Letra): bool
+                            +letra_utilizada(letra: Letra): bool
+                            +dar_palabra_actual(): Palabra
+                            +dar_intentos_disponibles(): int
+                            +dar_jugadas(): List~Letra~
+                            +dar_ocurrencias(): List~str~
+                            +dar_estado(): Estado
+                        }
+                    
                         class Estado {
                             &lt;&lt;enumeration&gt;&gt;
                             NO_INICIADO
@@ -233,55 +265,17 @@ else:
                             GANADOR
                             AHORCADO
                         }
-
-                        class JuegoAhorcado {
-                            +List~Palabra~ diccionario
-                            +Palabra palabra_actual
-                            +List~Letra~ jugadas
-                            +int intentos_disponibles
-                            +Estado estado
-                            +TOTAL_PALABRAS: int
-                            +MAX_INTENTOS: int
-                            +__init__()
-                            +iniciar_juego()
-                            +jugar_letra(letra: Letra): bool
-                            +dar_palabra_actual(): Palabra
-                            +dar_palabra(posicion: int): Palabra
-                            +dar_intentos_disponibles(): int
-                            +dar_jugadas(): List~Letra~
-                            +dar_ocurrencias(): List~Letra~
-                            +dar_estado(): Estado
-                            +letra_utilizada(letra: Letra): bool
-                            +metodo1(): str
-                            +metodo2(): str
-                        }
-
-                        class Letra {
-                            +string letra
-                            +__init__(p_letra: str)
-                            +dar_letra(): str
-                            +es_igual(otra_letra: Letra): bool
-                        }
-
-                        class Palabra {
-                            +List~Letra~ letras
-                            +__init__(p_palabra: str)
-                            +esta_completa(p_jugadas: List~Letra~): bool
-                            -_buscar_letra_en_lista(p_letra: Letra, lista_letras: List~Letra~): bool
-                            +esta_letra(p_letra: Letra): bool
-                            +dar_ocurrencias(p_jugadas: List~Letra~): List~Letra~
-                            +dar_letras(): List~Letra~
-                        }
-
-                        JuegoAhorcado --* Palabra : "contiene en diccionario / palabra_actual"
-                        JuegoAhorcado --* Letra : "contiene en jugadas"
-                        JuegoAhorcado ..&gt; Estado : usa
-                        JuegoAhorcado ..&gt; Letra : "métodos usan"
-
-                        Palabra --* Letra : "compuesta de"
-                        Palabra ..&gt; Letra : "métodos usan"
-                        
-                        Letra ..&gt; Letra : "es_igual usa"
+                    
+                        JuegoAhorcado --* Palabra : "1 - gestiona" 
+                        JuegoAhorcado --* Letra : "* - registra jugadas" 
+                        JuegoAhorcado ..> Estado : "depende de"
+                        Palabra --* Letra : "* - contiene"
+                    
+                        %% Notas sobre las relaciones originales y ajustes:
+                        %% JuegoAhorcado --> "1" Palabra : usa  (Interpretado como composición/gestión --*)
+                        %% JuegoAhorcado --> "*" Letra : usa     (Interpretado como composición/agregación para jugadas --*)
+                        %% JuegoAhorcado --> Estado : depende de (Correcto como dependencia ..>)
+                        %% Palabra --> "*" Letra : contiene      (Correcto como composición --*)
                     </div>
                 </div>
             </div>
