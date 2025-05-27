@@ -518,18 +518,20 @@ ul {
   justify-content: center;
 }
 
+/* En tu archivo styles.css (alrededor de la línea 521) */
 .diagram-placeholder {
-  background: white;
-  border: 2px dashed var(--gray-300);
+  background: white; /* Estos serán anulados por tu style en línea en index.html para el div de Mermaid */
+  border: 2px dashed var(--gray-300); /* Anulado por style en línea */
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-3xl);
+  padding: var(--spacing-3xl); /* Anulado por style en línea */
   text-align: center;
-  min-height: 400px;
+  min-height: 400px; /* Anulado por style en línea */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* align-items: center; */ /* LÍNEA ELIMINADA O COMENTADA */
   gap: var(--spacing-md);
-  max-width: 1000px;
+  max-width: 100%; /* CAMBIADO de 800px para que ocupe más ancho */
   width: 100%;
 }
 
