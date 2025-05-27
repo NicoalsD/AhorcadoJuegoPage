@@ -188,35 +188,27 @@
                     <tbody>
                         <tr>
                             <td>
-                                <span class="req-name">RF-001: Iniciar Juego</span>
+                                <span class="req-name">R1: Iniciar nueva partida</span>
                             </td>
-                            <td>El sistema debe permitir al usuario iniciar una nueva partida del juego del ahorcado</td>
-                            <td>Comando de inicio del usuario</td>
-                            <td>Pantalla de juego con palabra oculta y gallows vacía</td>
+                            <td>Inicia una nueva partida con una nueva palabra aleatoria a adivinar.</td>
+                            <td>Ninguna</td>
+                            <td>La partida se inicia con el número de intentos 6 con el dibujo reseteado de forma exitosa.</td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="req-name">RF-002: Adivinar Letra</span>
+                                <span class="req-name">R2: Elegir una letra</span>
                             </td>
-                            <td>El sistema debe permitir al usuario ingresar una letra para adivinar</td>
-                            <td>Letra ingresada por el usuario</td>
-                            <td>Actualización del estado del juego y feedback visual</td>
+                            <td>Permite al usuario escoger una letra del alfabeto que puede o no estar en la palabra.</td>
+                            <td>Letra elegida</td>
+                            <td>La letra es elegida exitosamente</td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="req-name">RF-003: Validar Victoria</span>
+                                <span class="req-name">R3: Visualizar resultado</span>
                             </td>
-                            <td>El sistema debe detectar cuando el usuario ha adivinado la palabra completa</td>
-                            <td>Estado actual de las letras adivinadas</td>
-                            <td>Mensaje de victoria y opción de nuevo juego</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="req-name">RF-004: Validar Derrota</span>
-                            </td>
-                            <td>El sistema debe detectar cuando se han agotado todos los intentos</td>
-                            <td>Número de intentos fallidos</td>
-                            <td>Mensaje de derrota y revelación de la palabra</td>
+                            <td>Visualiza el resultado que da al haber escogido una letra.</td>
+                            <td>Ninguna</td>
+                            <td>Si la letra elegida se encuentra en la palabra, se muestra sobre el guion correspondiente, en caso de que no se encuentre, se pierde 1 intento y se muestra gráficamente. Si la letra ya fue utilizada, se informa al jugador. </td>
                         </tr>
                     </tbody>
                 </table>
