@@ -363,6 +363,7 @@ function handleErrors() {
 }
 
 // ===== INICIALIZACIÓN COMPLETA =====
+// ===== INICIALIZACIÓN COMPLETA =====
 document.addEventListener('DOMContentLoaded', function() {
     try {
         initializeNavigation();
@@ -372,6 +373,43 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeInteractiveEffects();
         setupScrollSpy();
         handleErrors();
+
+        // Inicializar Mermaid
+        if (typeof mermaid !== 'undefined') {
+            // Obtener valores de las variables CSS para usarlos en Mermaid
+            // Necesitamos obtener el estilo computado del :root o body para acceder a las variables CSS
+            const rootStyles = getComputedStyle(document.documentElement);
+
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'base', // 'base' permite más personalización con themeVariables
+                themeVariables: {
+                    // Colores de tu :root en styles.css
+                    primaryColor: rootStyles.getPropertyValue('--primary-color').trim() || '#2563eb',
+                    primaryTextColor: rootStyles.getPropertyValue('--dark-color').trim() || '#1f2937',
+                    primaryBorderColor: rootStyles.getPropertyValue('--primary-color').trim() || '#2563eb',
+                    lineColor: rootStyles.getPropertyValue('--gray-700').trim() || '#334155',
+                    textColor: rootStyles.getPropertyValue('--dark-color').trim() || '#1f2937',
+                    
+                    // Variables específicas para diagramas de clases (pueden variar según la versión de Mermaid)
+                    classText: rootStyles.getPropertyValue('--dark-color').trim() || '#1f2937',
+                    // Backgrounds
+                    mainBkg: rootStyles.getPropertyValue('--light-color').trim() || '#f8fafc', // Fondo principal del diagrama
+                    clusterBkg: rootStyles.getPropertyValue('--gray-100').trim() || '#f1f5f9', // Fondo de las cajas de clase
+
+                    // Font
+                    fontFamily: rootStyles.getPropertyValue('--font-family').trim() || 'Inter, sans-serif',
+                    fontSize: '18px', // Mermaid suele usar px. Puedes ajustar esto.
+
+                    // Relaciones
+                    relationColor: rootStyles.getPropertyValue('--gray-600').trim() || '#475569',
+                    relationLabelColor: rootStyles.getPropertyValue('--dark-color').trim() || '#1f2937',
+                    arrowheadColor: rootStyles.getPropertyValue('--gray-700').trim() || '#334155'
+                }
+            });
+            // Forzar un re-renderizado si es necesario después de cargar estilos
+            // mermaid.contentLoaded(); // Descomentar si el diagrama no aparece inicialmente
+        }
         
         console.log('Aplicación inicializada correctamente');
         

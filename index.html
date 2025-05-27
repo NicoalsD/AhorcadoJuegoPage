@@ -216,7 +216,7 @@ else:
     </section>
 
     <!-- Diagrama de Clases -->
-    <section id="diagrama" class="diagram-section">
+<section id="diagrama" class="diagram-section">
         <div class="container">
             <div class="section-header">
                 <h2>Diagrama de Clases</h2>
@@ -224,8 +224,66 @@ else:
             </div>
             
             <div class="diagram-container">
-                <div class="diagram-placeholder">
-                    <img src="img/diagrama.png" alt="Diagrama de Clases del Proyecto Ahorcado" class="diagram-image">
+                <div class="diagram-placeholder" style="background: none; border: none; min-height: auto; padding: 0;"> 
+                    <div class="mermaid">
+                    classDiagram
+                        class Estado {
+                            &lt;&lt;enumeration&gt;&gt;
+                            NO_INICIADO
+                            JUGANDO
+                            GANADOR
+                            AHORCADO
+                        }
+
+                        class JuegoAhorcado {
+                            +List~Palabra~ diccionario
+                            +Palabra palabra_actual
+                            +List~Letra~ jugadas
+                            +int intentos_disponibles
+                            +Estado estado
+                            +TOTAL_PALABRAS: int
+                            +MAX_INTENTOS: int
+                            +__init__()
+                            +iniciar_juego()
+                            +jugar_letra(letra: Letra): bool
+                            +dar_palabra_actual(): Palabra
+                            +dar_palabra(posicion: int): Palabra
+                            +dar_intentos_disponibles(): int
+                            +dar_jugadas(): List~Letra~
+                            +dar_ocurrencias(): List~Letra~
+                            +dar_estado(): Estado
+                            +letra_utilizada(letra: Letra): bool
+                            +metodo1(): str
+                            +metodo2(): str
+                        }
+
+                        class Letra {
+                            +string letra
+                            +__init__(p_letra: str)
+                            +dar_letra(): str
+                            +es_igual(otra_letra: Letra): bool
+                        }
+
+                        class Palabra {
+                            +List~Letra~ letras
+                            +__init__(p_palabra: str)
+                            +esta_completa(p_jugadas: List~Letra~): bool
+                            -_buscar_letra_en_lista(p_letra: Letra, lista_letras: List~Letra~): bool
+                            +esta_letra(p_letra: Letra): bool
+                            +dar_ocurrencias(p_jugadas: List~Letra~): List~Letra~
+                            +dar_letras(): List~Letra~
+                        }
+
+                        JuegoAhorcado --* Palabra : "contiene en diccionario / palabra_actual"
+                        JuegoAhorcado --* Letra : "contiene en jugadas"
+                        JuegoAhorcado ..&gt; Estado : usa
+                        JuegoAhorcado ..&gt; Letra : "métodos usan"
+
+                        Palabra --* Letra : "compuesta de"
+                        Palabra ..&gt; Letra : "métodos usan"
+                        
+                        Letra ..&gt; Letra : "es_igual usa"
+                    </div>
                 </div>
             </div>
         </div>
@@ -678,5 +736,7 @@ class Palabra:
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
 </body>
 </html>

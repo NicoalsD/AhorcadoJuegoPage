@@ -528,9 +528,9 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   gap: var(--spacing-md);
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
 }
 
