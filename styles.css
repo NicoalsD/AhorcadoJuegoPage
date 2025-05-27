@@ -532,7 +532,7 @@ ul {
   /* align-items: center; */ /* LÍNEA ELIMINADA O COMENTADA */
   gap: var(--spacing-md);
   max-width: 100%; /* CAMBIADO de 800px para que ocupe más ancho */
-  width: 100%;
+  width: 75%;
 }
 
 .diagram-placeholder i {
