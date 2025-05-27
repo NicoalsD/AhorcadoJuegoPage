@@ -894,3 +894,37 @@ h4 {
     font-size: var(--font-size-xs);
   }
 }
+
+/* ===== SECCIÓN PYTEST ===== */
+.pytest-section {
+  padding: var(--spacing-3xl) 0;
+  background: white;
+}
+
+.pytest-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pytest-image-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+}
+
+.pytest-screenshot {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: block;
+}
+
+.pytest-screenshot:hover {
+  transform: scale(1.02);
+}
